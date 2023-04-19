@@ -1,0 +1,318 @@
+<div class="container-xxl flex-grow-1 container-p-y">
+    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Service /</span> {{{moduleName}}} </h4>
+    <div class="card">
+        <h5 class="card-header">Listing <span class="float-right btn">Create new</span></h5>
+        <div class="card-body">
+            <div class="table-responsive text-nowrap">
+                {{#if tableStatus.ethnicity}}
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Description</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each tableData}}
+                        <tr>
+                            <td>
+                                <i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>{{{name}}}</strong>
+                            </td>
+                            <td>{{{description}}}</td>
+                            <td>{{#if isEnabled}}<span class="badge bg-label-primary me-1">Active </span>{{else}}<span class="badge bg-label-warning me-1">InActive</span>  {{/if}}</td>
+                            <td>
+                                <div class="dropdown">
+                                    <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
+                                        data-bs-toggle="dropdown">
+                                        <i class="bx bx-dots-vertical-rounded"></i>
+                                    </button>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="javascript:void(0);"><i
+                                                class="bx bx-edit-alt me-1"></i> Edit</a>
+                                        <a class="dropdown-item" href="javascript:void(0);"><i
+                                                class="bx bx-trash me-1"></i> Delete</a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        {{else}}
+                        <tr>
+                            <td>No Data Found.</td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+                {{/if}}
+                {{#if tableStatus.user}}
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Contact info</th>
+                            <th>Status</th>
+                            <th>Ethnicity</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each tableData}}
+                        <tr>
+                            <td>
+                                <img src="../assets/img/avatars/5.png" alt="Avatar" class="rounded-circle" width="50"/> <strong>{{{fullName}}}</strong>
+                            </td>
+                            <td>{{{email}}} <br> <small>{{{contactNumber}}}</small></td>
+                            <td>{{#if isEnabled}}<span class="badge bg-label-primary me-1">Active </span>{{else}}<span class="badge bg-label-warning me-1">InActive</span>  {{/if}} <br> {{#if verifyStatus}}<span class="badge bg-label-primary me-1">Verified </span>{{else}}<span class="badge bg-label-warning me-1">Unverified</span>  {{/if}}</td>
+                            <td>{{#if ethnicityId}} {{{ethnicityName}}} {{else}} Unknown {{/if}}</td>
+                            <td>
+                                <div class="dropdown">
+                                    <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
+                                        data-bs-toggle="dropdown">
+                                        <i class="bx bx-dots-vertical-rounded"></i>
+                                    </button>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="javascript:void(0);"><i
+                                                class="bx bx-edit-alt me-1"></i> Edit</a>
+                                        <a class="dropdown-item" href="javascript:void(0);"><i
+                                                class="bx bx-trash me-1"></i> Delete</a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        {{else}}
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td>No Data Found.</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+                {{/if}}
+                {{#if tableStatus.wishlist}}
+                {{/if}}
+                {{#if tableStatus.haircat}}
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Description</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each tableData}}
+                        <tr>
+                            <td>
+                                <i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>{{{name}}}</strong>
+                            </td>
+                            <td>{{#if description}}{{{description}}} {{else}} --- {{/if}}</td>
+                            <td>{{#if isEnabled}}<span class="badge bg-label-primary me-1">Active </span>{{else}}<span class="badge bg-label-warning me-1">InActive</span>  {{/if}}</td>
+                            <td>
+                                <div class="dropdown">
+                                    <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
+                                        data-bs-toggle="dropdown">
+                                        <i class="bx bx-dots-vertical-rounded"></i>
+                                    </button>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="javascript:void(0);"><i
+                                                class="bx bx-edit-alt me-1"></i> Edit</a>
+                                        <a class="dropdown-item" href="javascript:void(0);"><i
+                                                class="bx bx-trash me-1"></i> Delete</a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        {{else}}
+                        <tr>
+                            <td>No Data Found.</td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+                {{/if}}
+                {{#if tableStatus.hairsub}}
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Hair Category Name</th>
+                            <th>Description</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each tableData}}
+                        <tr>
+                            <td>
+                                <i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>{{{name}}}</strong>
+                            </td>
+                            <td>{{{hairCatName}}}</td>
+                            <td>{{#if description}}{{{description}}} {{else}} --- {{/if}}</td>
+                            <td>{{#if isEnabled}}<span class="badge bg-label-primary me-1">Active </span>{{else}}<span class="badge bg-label-warning me-1">InActive</span>  {{/if}}</td>
+                            <td>
+                                <div class="dropdown">
+                                    <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
+                                        data-bs-toggle="dropdown">
+                                        <i class="bx bx-dots-vertical-rounded"></i>
+                                    </button>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="javascript:void(0);"><i
+                                                class="bx bx-edit-alt me-1"></i> Edit</a>
+                                        <a class="dropdown-item" href="javascript:void(0);"><i
+                                                class="bx bx-trash me-1"></i> Delete</a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        {{else}}
+                        <tr>
+                            <td>No Data Found.</td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+                {{/if}}
+                {{#if tableStatus.role}}{{/if}}
+                {{#if tableStatus.salon}}{{/if}}
+                {{#if tableStatus.salonopening}}{{/if}}
+                {{#if tableStatus.salonuserrate}}{{/if}}
+                {{#if tableStatus.search}}{{/if}}
+                {{#if tableStatus.service}}
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                             <th>Service Category & Sub-Category Name</th>
+                            <th>Description</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each tableData}}
+                        <tr>
+                            <td>
+                                <i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>{{{name}}}</strong>
+                            </td>
+                            <td>{{{serviceCatName}}} <br> {{{ServiceSubcatName}}}</td>
+                            <td>{{#if description}}{{{description}}} {{else}} --- {{/if}}</td>
+                            <td>{{#if isEnabled}}<span class="badge bg-label-primary me-1">Active </span>{{else}}<span class="badge bg-label-warning me-1">InActive</span>  {{/if}}</td>
+                            <td>
+                                <div class="dropdown">
+                                    <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
+                                        data-bs-toggle="dropdown">
+                                        <i class="bx bx-dots-vertical-rounded"></i>
+                                    </button>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="javascript:void(0);"><i
+                                                class="bx bx-edit-alt me-1"></i> Edit</a>
+                                        <a class="dropdown-item" href="javascript:void(0);"><i
+                                                class="bx bx-trash me-1"></i> Delete</a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        {{else}}
+                        <tr>
+                            <td>No Data Found.</td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+                {{/if}}
+                {{#if tableStatus.servicecat}}
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Description</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each tableData}}
+                        <tr>
+                            <td>
+                                <i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>{{{name}}}</strong>
+                            </td>
+                            <td>{{#if description}}{{{description}}} {{else}} --- {{/if}}</td>
+                            <td>{{#if isEnabled}}<span class="badge bg-label-primary me-1">Active </span>{{else}}<span class="badge bg-label-warning me-1">InActive</span>  {{/if}}</td>
+                            <td>
+                                <div class="dropdown">
+                                    <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
+                                        data-bs-toggle="dropdown">
+                                        <i class="bx bx-dots-vertical-rounded"></i>
+                                    </button>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="javascript:void(0);"><i
+                                                class="bx bx-edit-alt me-1"></i> Edit</a>
+                                        <a class="dropdown-item" href="javascript:void(0);"><i
+                                                class="bx bx-trash me-1"></i> Delete</a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        {{else}}
+                        <tr>
+                            <td>No Data Found.</td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+                {{/if}}
+                {{#if tableStatus.servicesub}}
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Service Category Name</th>
+                            <th>Description</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each tableData}}
+                        <tr>
+                            <td>
+                                <i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>{{{name}}}</strong>
+                            </td>
+                            <td>{{{serviceCatName}}}</td>
+                            <td>{{#if description}}{{{description}}} {{else}} --- {{/if}}</td>
+                            <td>{{#if isEnabled}}<span class="badge bg-label-primary me-1">Active </span>{{else}}<span class="badge bg-label-warning me-1">InActive</span>  {{/if}}</td>
+                            <td>
+                                <div class="dropdown">
+                                    <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
+                                        data-bs-toggle="dropdown">
+                                        <i class="bx bx-dots-vertical-rounded"></i>
+                                    </button>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="javascript:void(0);"><i
+                                                class="bx bx-edit-alt me-1"></i> Edit</a>
+                                        <a class="dropdown-item" href="javascript:void(0);"><i
+                                                class="bx bx-trash me-1"></i> Delete</a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        {{else}}
+                        <tr>
+                            <td>No Data Found.</td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+                {{/if}}
+                {{#if tableStatus.userdetail}}{{/if}}
+                {{#if tableStatus.usersalonwishlist}}{{/if}}
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,29 @@
+<div class="container-xxl flex-grow-1 container-p-y">
+    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Mobile Settings /</span> Splash</h4>
+<form id="formAccountSettings" method="POST" action="/update-splash">
+
+                <div class="card mb-4">
+                    <h5 class="card-header">Splash Screen Details</h5>
+                    <hr class="my-0" />
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="mb-3 col-md-6">
+                                <label for="title" class="form-label">Title</label>
+                                <input class="form-control" type="text" id="title" name="title"
+                                    value="{{{formData.name}}}" autofocus />
+                            </div>
+                            <div class="mb-3 col-md-6">
+                                <label for="description" class="form-label">Description</label>
+                                <textarea class="form-control" type="text" id="description" name="description"
+                                    placeholder="john.doe@example.com">{{{formData.description}}}</textarea>
+                            </div>
+                        </div>
+                        <div class="mt-2">
+                            <button type="submit" class="btn btn-primary me-2">Save changes</button>
+                            <button type="reset" class="btn btn-outline-secondary">Cancel</button>
+                        </div>
+                    </div>
+                    <!-- /Account -->
+                </div>
+            </form>
+</div>

@@ -1,0 +1,224 @@
+<form id="adminCreateForm" method="POST" action="/admin/create">
+    <div class="container-xxl flex-grow-1 container-p-y">
+        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Forms/</span> Create {{{moduleName}}}</h4>
+
+        <!-- Basic Layout -->
+        <div class="row">
+            <div class="col-xl">
+                <div class="card mb-4">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0">Basic Details</h5>
+                        <small class="text-muted float-end">Default label</small>
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <label class="form-label" for="admin-create-fullname">Full Name</label>
+                            <div class="input-group input-group-merge">
+                                <span id="basic-icon-default-fullname2" class="input-group-text"><i
+                                        class="bx bx-user"></i></span>
+                                <input type="text" class="form-control" id="admin-create-fullname"
+                                    placeholder="John Doe" aria-label="John Doe" name="fullName"
+                                    aria-describedby="basic-icon-default-fullname2" />
+                            </div>
+                            <span id="admin-create-fullname-error" class="text-danger d-none">this field is
+                                required</span>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="admin-create-email">Email</label>
+                            <div class="input-group input-group-merge">
+                                <span class="input-group-text"><i class="bx bx-envelope"></i></span>
+                                <input type="text" id="admin-create-email" class="form-control" placeholder="john.doe"
+                                    aria-label="john.doe" aria-describedby="basic-icon-default-email2" name="email"
+                                    autocomplete="new-email" />
+                                <span id="basic-icon-default-email2" class="input-group-text">@example.com</span>
+                            </div>
+                            <span id="admin-create-email-error" class="text-danger d-none">this field is required</span>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="admin-create-phone">Phone No</label>
+                            <div class="input-group input-group-merge">
+                                <span id="basic-icon-default-phone2" class="input-group-text"><i
+                                        class="bx bx-phone"></i></span>
+                                <input type="text" id="admin-create-phone" name="contactNumber"
+                                    class="form-control phone-mask" placeholder="658 799 8941" aria-label="658 799 8941"
+                                    aria-describedby="basic-icon-default-phone2" />
+                            </div>
+                            <span id="admin-create-phone-error" class="text-danger d-none">this field is required</span>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="admin-create-password">Password</label>
+                            <div class="input-group input-group-merge">
+                                <span id="basic-icon-default-company2" class="input-group-text"><i
+                                        class="bx bx-fingerprint"></i></span>
+                                <input type="password" id="admin-create-password" name="password" class="form-control"
+                                    aria-describedby="basic-icon-default-company2" placeholder="********"
+                                    autocomplete="new-password" />
+                            </div>
+                            <div class="form-text">You can use letters, numbers & periods</div>
+                            <span id="admin-create-password-error" class="text-danger d-none">this field is
+                                required</span>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="admin-create-c-password">Confim Passwrod</label>
+                            <div class="input-group input-group-merge">
+                                <span id="basic-icon-default-company2" class="input-group-text"><i
+                                        class="bx bx-fingerprint"></i></span>
+                                <input type="password" id="admin-create-c-password" name="password1"
+                                    placeholder="********" class="form-control"
+                                    aria-describedby="basic-icon-default-company2" />
+                            </div>
+                            <div class="form-text">You can use letters, numbers & periods</div>
+                            <span id="admin-create-c-password-error" class="text-danger d-none">this field is
+                                required</span>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="1" name="isEnabled"
+                                id="defaultCheck3" checked />
+                            <label class="form-check-label" for="defaultCheck3">
+                                Active {{{moduleName}}}
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl">
+                <div class="card mb-4">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0">Address Details</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <label class="form-label" for="admin-create-address">Address</label>
+                            <div class="input-group input-group-merge">
+                                <span id="basic-icon-default-message2" class="input-group-text"><i
+                                        class="bx bx-home"></i></span>
+                                <textarea id="admin-create-address" class="form-control"
+                                    placeholder="304B, Manious Street" aria-label="304B, Manious Street" name="address"
+                                    aria-describedby="basic-icon-default-message2"></textarea>
+                            </div>
+                            <span id="admin-create-address-error" class="text-danger d-none">this field is
+                                required</span>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="admin-create-city">City</label>
+                            <div class="input-group input-group-merge">
+                                <span id="basic-icon-default-fullname2" class="input-group-text"><i
+                                        class="bx bx-buildings"></i></span>
+                                <input type="text" class="form-control" id="admin-create-city" placeholder="Madrid"
+                                    aria-label="Madrid" name="city" aria-describedby="basic-icon-default-fullname2" />
+                            </div>
+                            <span id="admin-create-city-error" class="text-danger d-none">this field is required</span>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="admin-create-state">State</label>
+                            <div class="input-group input-group-merge">
+                                <span id="basic-icon-default-company2" class="input-group-text"><i
+                                        class="bx bx-stats"></i></span>
+                                <input type="text" id="admin-create-state" name="state" class="form-control"
+                                    placeholder="Barcelona" aria-label="Barcelona"
+                                    aria-describedby="basic-icon-default-company2" />
+                            </div>
+                            <span id="admin-create-state-error" class="text-danger d-none">this field is required</span>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="admin-create-zipCode">Zip Code</label>
+                            <div class="input-group input-group-merge">
+                                <span class="input-group-text"><i class="bx bx-directions"></i></span>
+                                <input type="text" id="admin-create-zipCode" name="zipCode" class="form-control"
+                                    placeholder="214562" aria-label="214562"
+                                    aria-describedby="basic-icon-default-email2" />
+                            </div>
+                            <span id="admin-create-zipCode-error" class="text-danger d-none">this field is
+                                required</span>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="admin-create-country">Country</label>
+                            <div class="input-group input-group-merge">
+                                <span class="input-group-text"><i class="bx bx-shape-circle"></i></span>
+                                <select id="admin-create-country" name="country" class="select2 form-select">
+                                    <option value="">Select</option>
+                                    {{#each countries}}
+                                    <option value="{{{id}}}">{{{name}}}</option>
+                                    {{/each}}
+                                </select>
+                            </div>
+                            <span id="admin-create-country-error" class="text-danger d-none">this field is
+                                required</span>
+                        </div>
+
+                        <span onclick="SubmitCreateAdminForm();" class="btn btn-primary">Create</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+<script>
+    function SubmitCreateAdminForm() {
+        let fullName = $('#admin-create-fullname').val();
+        let email = $('#admin-create-email').val();
+        let phone = $('#admin-create-phone').val();
+        let password = $('#admin-create-password').val();
+        let cpassword = $('#admin-create-c-password').val();
+        let address = $('#admin-create-address').val();
+        let city = $('#admin-create-city').val();
+        let state = $('#admin-create-state').val();
+        let zipCode = $('#admin-create-zipCode').val();
+        let country = $('#admin-create-country').val();
+        if (!fullName || fullName == "") {
+            $('#admin-create-fullname-error').removeClass('d-none');
+        } else {
+            $('#admin-create-fullname-error').addClass('d-none');
+        }
+        if (!email) {
+            $('#admin-create-email-error').removeClass('d-none');
+        } else {
+            $('#admin-create-email-error').addClass('d-none');
+        }
+        if (!phone) {
+            $('#admin-create-phone-error').removeClass('d-none');
+        } else {
+            $('#admin-create-phone-error').addClass('d-none');
+        }
+        if (!password) {
+            $('#admin-create-password-error').removeClass('d-none');
+        } else {
+            $('#admin-create-password-error').addClass('d-none');
+        }
+        if (!cpassword) {
+            $('#admin-create-c-password-error').removeClass('d-none');
+        } else {
+            $('#admin-create-c-password-error').addClass('d-none');
+        }
+        if (!address) {
+            $('#admin-create-address-error').removeClass('d-none');
+        } else {
+            $('#admin-create-address-error').addClass('d-none');
+        }
+        if (!city) {
+            $('#admin-create-city-error').removeClass('d-none');
+        } else {
+            $('#admin-create-city-error').addClass('d-none');
+        }
+        if (!state) {
+            $('#admin-create-state-error').removeClass('d-none');
+        } else {
+            $('#admin-create-state-error').addClass('d-none');
+        }
+        if (!zipCode) {
+            $('#admin-create-zipCode-error').removeClass('d-none');
+        } else {
+            $('#admin-create-zipCode-error').addClass('d-none');
+        }
+        if (!country) {
+            $('#admin-create-country-error').removeClass('d-none');
+        } else {
+            $('#admin-create-country-error').addClass('d-none');
+        }
+        console.log({ fullName, email, phone, password, cpassword, address, city, state, zipCode, country })
+        if (fullName && email && phone && password && cpassword && address && city && state && zipCode && country) {
+            $('#adminCreateForm').submit();
+        }
+        //admin-create-fullname-error
+    }
+</script>

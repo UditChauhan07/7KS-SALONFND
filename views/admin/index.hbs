@@ -1,0 +1,109 @@
+<div class="container-xxl flex-grow-1 container-p-y">
+    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Service /</span> {{{moduleName}}} </h4>
+    {{#if message}}
+    <div class="alert alert-success alert-dismissible" role="alert">
+        {{{message}}}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {{/if}}
+    <div class="card">
+        <div class="card">
+            <div class="row">
+                <h5 class="card-header col-10">Listing</h5>
+                <div class="float-right col-2 mt-4">
+                    <a href="/admin/create" class="btn btn-primary">Create new</a>
+                </div>
+            </div>
+            {{!-- <div class="row m-1">
+                <div class="col-9"></div>
+                <div class="float-right col-3">
+                    <div class="input-group input-group-merge">
+                        <span id="basic-icon-default-fullname2" class="input-group-text"><i
+                                class="bx bx-search"></i></span>
+                        <input type="text" class="form-control" placeholder="Search" aria-label="Search" name="name"
+                            id="name" aria-describedby="basic-icon-default-fullname2" />
+                    </div>
+                </div>
+            </div> --}}
+            <div class="card-body">
+                <div class="table-responsive text-nowrap">
+                    {{#if tableStatus.user}}
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Contact info</th>
+                                <th>Status</th>
+                                <th>Ethnicity</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#each tableData}}
+                            <tr>
+                                <td>
+                                    <img src="../assets/img/avatars/5.png" alt="Avatar" class="rounded-circle"
+                                        width="50" />
+                                    <strong>{{{fullName}}}</strong>
+                                </td>
+                                <td>{{{email}}} <br> <small>{{{contactNumber}}}</small></td>
+                                <td>{{#if isEnabled}}<span class="badge bg-label-primary me-1">Active
+                                    </span>{{else}}<span class="badge bg-label-warning me-1">InActive</span> {{/if}}
+                                    <br> {{#if
+                                    verifyStatus}}<span class="badge bg-label-primary me-1">Verified
+                                    </span>{{else}}<span class="badge bg-label-warning me-1">Unverified</span> {{/if}}
+                                </td>
+                                <td>{{#if ethnicityId}} {{{ethnicityName}}} {{else}} Unknown {{/if}}</td>
+                                <td>
+                                    <div class="dropdown">
+                                        <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
+                                            data-bs-toggle="dropdown">
+                                            <i class="bx bx-dots-vertical-rounded"></i>
+                                        </button>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item" href="admin/{{{id}}}"><i
+                                                    class="bx bx-edit-alt me-1"></i> Edit</a>
+                                            <a class="dropdown-item" href="/admin/{{{id}}}/delete"><i
+                                                    class="bx bx-trash me-1"></i> Delete</a>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            {{else}}
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td>No Data Found.</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            {{/each}}
+                        </tbody>
+                    </table>
+                    {{/if}}
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="demo-inline-spacing">
+        <nav aria-label="Page navigation">
+            <ul class="pagination justify-content-end">
+                <li class="page-item prev">
+                    <a class="page-link" href="/business/{{{paginate.first}}}/index"><i
+                            class="tf-icon bx bx-chevrons-left"></i></a>
+                </li>
+                {{#each paginate.array}}
+                <li class="page-item active">
+                    <a class="page-link" href="/business/{{{key}}}/index">{{{key}}}</a>
+                </li>
+                {{/each}}
+                <li class="page-item next">
+                    <a class="page-link" href="/business/{{{paginate.last}}}/index"><i
+                            class="tf-icon bx bx-chevrons-right"></i></a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>

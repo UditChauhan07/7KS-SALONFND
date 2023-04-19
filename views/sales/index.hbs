@@ -1,0 +1,216 @@
+<style>
+    .text-nowrap {
+        white-space: normal !important;
+    }
+</style>
+<div class="container-xxl flex-grow-1 container-p-y">
+
+    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Service /</span> {{{moduleName}}} </h4>
+    <br>
+    {{#if message}}
+    <div class="alert alert-success alert-dismissible" role="alert">
+        {{{message}}}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {{/if}}
+    <div class="card">
+        <div class="row">
+            <h5 class="card-header col-10">Listing</h5>
+            <div class="float-right col-2 mt-4">
+                <a href="/sales/create" class="btn btn-primary">Create new</a>
+            </div>
+        </div>
+        {{!-- <div class="row m-1">
+            <div class="col-9"></div>
+            <div class="float-right col-3">
+                <div class="input-group input-group-merge">
+                    <span id="basic-icon-default-fullname2" class="input-group-text"><i class="bx bx-search"></i></span>
+                    <input type="text" class="form-control" placeholder="Search" aria-label="Search" name="sales-Search"
+                        id="sales-Search" aria-describedby="basic-icon-default-fullname2" />
+                </div>
+            </div>
+        </div> --}}
+        <div class="card-body">
+            <div class="table-responsive text-nowrap">
+                {{#if true}}
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Contact info</th>
+                            <th>Status</th>
+                            <th style="width:25%;">Addresss</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="salesTable">
+                        {{#each tableData}}
+                        <tr>
+                            <td>{{#if profilePic}}
+                                <img src="{{{asset}}}{{{profilePic}}}" alt="Avatar" class="rounded-circle" width="50" />
+                                {{/if}}
+                                <strong>{{{fullName}}}</strong>
+                            </td>
+                            <td>{{{email}}} <br> <small>{{{contactNumber}}}</small></td>
+                            <td>{{#if isEnabled}}<span class="badge bg-label-primary me-1">Active </span>{{else}}<span
+                                    class="badge bg-label-warning me-1">InActive</span> {{/if}}</td>
+                            <td style="width:30%;">{{#if addressfield1}}{{{addressfield1}}}{{/if}}{{#if addressfield2}},
+                                {{{addressfield2}}}{{/if}}{{#if addressfield3}}, {{{addressfield3}}}{{/if}}{{#if
+                                addressfield4}}, {{{addressfield4}}}{{/if}}{{#if addressfield5}},
+                                {{{addressfield5}}}{{/if}}{{#if addressfield6}}, {{{addressfield6}}}{{/if}}{{#if
+                                addressfield7}}, {{{addressfield7}}}{{/if}}{{#if addressfield8Name}},
+                                {{{addressfield8Name}}}{{/if}}</td>
+                            <td>
+                                <div class="dropdown">
+                                    <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
+                                        data-bs-toggle="dropdown">
+                                        <i class="bx bx-dots-vertical-rounded"></i>
+                                    </button>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="/sales/{{{id}}}"><i
+                                                class="bx bx-edit-alt me-1"></i> Edit</a>
+                                        <a class="dropdown-item text-danger" href="/sales/{{{id}}}/delete"><i
+                                                class="bx bx-trash me-1"></i> Delete</a>
+                                        </form>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        {{else}}
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td>No Data Found.</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+                {{/if}}
+
+            </div>
+        </div>
+    </div>
+    <div class="demo-inline-spacing">
+        <nav aria-label="Page navigation">
+            <ul class="pagination justify-content-end">
+                {{#if paginate.first}}
+                <li class="page-item prev">
+                    <a class="page-link" href="/sales/{{{paginate.first}}}/index"><i
+                            class="tf-icon bx bx-chevrons-left"></i></a>
+                </li>
+                {{/if}}
+                {{#each paginate.array}}
+                <li class="page-item active">
+                    <a class="page-link" href="/sales/{{{key}}}/index">{{{key}}}</a>
+                </li>
+                {{/each}}
+                {{#if paginate.last}}
+                <li class="page-item next">
+                    <a class="page-link" href="/sales/{{{paginate.last}}}/index"><i
+                            class="tf-icon bx bx-chevrons-right"></i></a>
+                </li>
+                {{/if}}
+            </ul>
+        </nav>
+    </div>
+</div>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<script>
+    $("#sales-Search").keyup(function () {
+        let val = $(this).val();
+        if (val) {
+            $.ajax({
+                type: "post",
+                url: '/sales/search/index',
+                data: { val },
+                success: function (result) {
+                    if (result.status == 200) {
+                        let html = ``;
+                        result.data.forEach(element => {
+                            let profilePic = undefined;
+                            if (element.profilePic) {
+                                html += `<tr>
+                            <td>
+                                <img src="{{{asset}}}${element.profilePic}" alt="Avatar" class="rounded-circle" width="50" />
+                                <strong>${element.fullName}</strong>
+                            </td>`
+                            } else {
+                                html += `<tr>
+                            <td>
+                                <strong>${element.fullName}</strong>
+                            </td>`
+                            }
+                            let status = '';
+                            if (element.isEnabled) {
+                                status = `<span class="badge bg-label-primary me-1">Active </span>`
+                            } else {
+                                status = `<span class="badge bg-label-warning me-1">InActive</span>`
+                            }
+                            let address = '';
+                            if (element.addressfield1) {
+                                address += `${element.addressfield1}, `;
+                            }
+                            if (element.addressfield2) {
+                                address += `${element.addressfield2}, `;
+                            }
+                            if (element.addressfield3) {
+                                address += `${element.addressfield3}, `;
+                            }
+                            if (element.addressfield4) {
+                                address += `${element.addressfield4}, `;
+                            }
+                            if (element.addressfield5) {
+                                address += `${element.addressfield5}, `;
+                            }
+                            if (element.addressfield6) {
+                                address += `${element.addressfield6}, `;
+                            }
+                            if (element.addressfield7) {
+                                address += `${element.addressfield7}, `;
+                            }
+                            if (element.addressfield8Name) {
+                                address += `${element.addressfield8Name}`;
+                            }
+
+                            html += `
+                            <td>${element.email} <br> <small>${element.contactNumber}</small></td>
+                            <td>${status}</td>
+                            <td style="width:30%;">${address}</td>
+                            <td>
+                                <div class="dropdown">
+                                    <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
+                                        data-bs-toggle="dropdown">
+                                        <i class="bx bx-dots-vertical-rounded"></i>
+                                    </button>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="/sales/${element.id}"><i
+                                                class="bx bx-edit-alt me-1"></i> Edit</a>
+                                        <a class="dropdown-item text-danger" href="/sales/${element.id}/delete"><i
+                                                class="bx bx-trash me-1"></i> Delete</a>
+                                        </form>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>`;
+                        });
+                        $('#salesTable').html(html)
+                    }else{
+                        html = `<tr>
+                            <td></td>
+                            <td></td>
+                            <td>No Data Found.</td>
+                            <td></td>
+                            <td></td>
+                        </tr>`
+                        $('#salesTable').html(html)
+                    }
+                },
+                error: function (data) {
+                    console.log('Error:', data);
+                }
+            });
+        }
+    });
+</script>

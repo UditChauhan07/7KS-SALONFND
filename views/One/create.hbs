@@ -1,0 +1,52 @@
+    {{#if successCode}}
+    <div
+                        class="bs-toast toast fade show bg-secondary" style="position: absolute;right: 10px;top: 10px;"
+                        role="alert"
+                        id="SuccessToast"
+                        aria-live="assertive"
+                        aria-atomic="true"
+                      >
+                        <div class="toast-header">
+                          <i class="bx bx-bell me-2"></i>
+                          <div class="me-auto fw-semibold">{{{title}}}</div>
+                          <small>Success</small>
+                          <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                        </div>
+                        <div class="toast-body">
+                          {{{message}}}
+                        </div>
+                      </div>
+                      {{/if}}
+    <div class="container-xxl flex-grow-1 container-p-y">
+              <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Service /</span> {{{moduleName}}} </h4>
+              <form action="/service/{{{moduleName}}}" method="post">
+              <div class="col-md-12">
+                  <div class="card mb-8">
+                    <h5 class="card-header">Create</h5>
+                    <div class="card-body demo-vertical-spacing demo-only-element">
+                      <div class="input-group">
+                        <input
+                          type="text"
+                          class="form-control"
+                          placeholder="Enter Ethnicity Name"
+                          aria-label="Ethnicity name"
+                          aria-describedby="basic-addon-search31"
+                          name="name"
+                        />
+                      </div>
+                      <div class="input-group input-group-merge">
+                        <span class="input-group-text">describe about this Ethnicity</span>
+                        <textarea class="form-control" aria-label="With textarea" name="description"></textarea>
+                      </div>
+                                            <div class="form-check form-switch mb-2">
+                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" name="isEnabled" value="1" checked/>
+                        <label class="form-check-label" for="flexSwitchCheckDefault"
+                          >Active this Ethnicity</label
+                        >
+                      </div>
+                      <button class="btn btn-outline-primary" type="submit" id="button-addon1">Button</button>
+                    </div>
+                  </div>
+                </div>
+                              </form>
+            </div>

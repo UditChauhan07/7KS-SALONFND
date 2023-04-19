@@ -1,0 +1,644 @@
+<div class="container-xxl flex-grow-1 container-p-y">
+    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Forms/</span> Create {{{moduleName}}}</h4>
+    <div class="row">
+        <div class="col-xl-12">
+            <div class="nav-align-top mb-4">
+                <ul class="nav nav-pills mb-3 nav-fill" role="tablist">
+                    <li class="nav-item">
+                        <button type="button" class="nav-link active" id="UserUpdationFormButton" role="tab"
+                            data-bs-toggle="tab" data-bs-target="#UserUpdationForm" aria-controls="UserUpdationForm"
+                            aria-selected="true">
+                            <i class="tf-icons bx bx-user"></i> User Details
+                            {{!-- <span class="badge rounded-pill badge-center h-px-20 w-px-20 bg-danger">3</span> --}}
+                        </button>
+                    </li>
+                    <li class="nav-item">
+                        {{!-- disabled --}}
+                        <button type="button" class="nav-link" role="tab" data-bs-toggle="tab"
+                            data-bs-target="#salonUpdationForm" aria-controls="salonUpdationForm" aria-selected="false"
+                            id="salonUpdationFormButton">
+                            <i class="tf-icons bx bx-home"></i> Buisness Details
+                        </button>
+                    </li>
+                    <li class="nav-item">
+                        <button type="button" class="nav-link disabled" role="tab" data-bs-toggle="tab"
+                            data-bs-target="#BarberCreationForm" id="BarberCreationFormButton"
+                            aria-controls="BarberCreationForm" aria-selected="false">
+                            <i class="tf-icons bx bx-message-square"></i> Barber/Stylist Details
+                        </button>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane fade show active" id="UserUpdationForm" role="tabpanel">
+                        <form action="/imgUpload/business-salon" method="post" enctype="multipart/form-data"
+                            id="uploadImgUpdateSalon">
+                            <div class="card-body">
+                                <div class="d-flex align-items-start align-items-sm-center gap-4">
+                                    <img src="{{{asset}}}/assets/src/business.jpg" alt="user-avatar"
+                                        class="d-block rounded" height="100" width="100" id="uploadedAvatar" />
+                                    <div class="button-wrapper">
+                                        <label for="upload" class="btn btn-primary me-2 mb-4" tabindex="0">
+                                            <span class="d-none d-sm-block">Upload new photo</span>
+                                            <i class="bx bx-upload d-block d-sm-none"></i>
+                                            <input type="file" id="upload" name="file" class="account-file-input" hidden
+                                                accept="image/png, image/jpeg" />
+                                        </label>
+
+                                        <p class="text-muted mb-0">Allowed JPG, GIF or PNG. Max size of 800K</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        <form id="edit-salon-form" method="POST" action="/salon/create">
+                            <!-- Basic Layout -->
+                            <div class="row">
+                                <div class="col-xl">
+                                    <div class="card mb-4">
+                                        <div class="card-header d-flex justify-content-between align-items-center">
+                                            <h5 class="mb-0">Owner Details</h5>
+                                            <small class="text-muted float-end">Fill details of Buisness Owner</small>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="mb-3">
+                                                <label class="form-label"
+                                                    for="edit-salon-buisness-owner-name"><sup>*</sup>Name</label>
+                                                <div class="input-group input-group-merge">
+                                                    <span id="basic-icon-default-fullname2" class="input-group-text"><i
+                                                            class="bx bx-building"></i></span>
+                                                    <input type="text" class="form-control"
+                                                        placeholder="Enter New Business Name"
+                                                        aria-label="Enter New Business Name" name="name"
+                                                        id="edit-salon-buisness-owner-name"
+                                                        aria-describedby="basic-icon-default-fullname2"
+                                                        value="{{{editData.businessData.salonOwnerName}}}" />
+                                                </div>
+                                                <span id="edit-salon-buisness-owner-error"
+                                                    class="text-danger d-none">this field is
+                                                    required</span>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label"
+                                                    for="edit-salon-buisness-owner-email">Email</label>
+                                                <div class="input-group input-group-merge">
+                                                    <span class="input-group-text"><i class="bx bx-envelope"></i></span>
+                                                    <input type="text" id="edit-salon-buisness-owner-email"
+                                                        class="form-control" placeholder="john.doe"
+                                                        aria-label="john.doe"
+                                                        aria-describedby="edit-salon-buisness-owner-email2" name="email"
+                                                        autocomplete="new-email"
+                                                        value="{{{editData.businessData.salonOwnerEmail}}}" />
+                                                    <span id="edit-salon-buisness-owner-email2"
+                                                        class="input-group-text">@example.com</span>
+                                                </div>
+                                                <span id="edit-salon-buisness-owner-email-error"
+                                                    class="text-danger d-none">this field is
+                                                    required</span>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label" for="edit-salon-buisness-owner-phone">Phone
+                                                    No</label>
+                                                <div class="input-group input-group-merge">
+                                                    <span id="edit-salon-buisness-owner-phone2"
+                                                        class="input-group-text"><i class="bx bx-phone"></i></span>
+                                                    <input type="text" id="edit-salon-buisness-owner-phone"
+                                                        oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');"
+                                                        name="contactNumber" class="form-control phone-mask"
+                                                        placeholder="658 799 8941" aria-label="658 799 8941"
+                                                        aria-describedby="edit-salon-buisness-owner-phone2"
+                                                        value="{{{editData.businessData.salonOwnerPhone}}}" />
+                                                </div>
+                                                <span id="edit-salon-buisness-owner-phone-error"
+                                                    class="text-danger d-none">this field is
+                                                    required</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-3"> <span onclick="SubmiteditUserForm();"
+                                            class="btn btn-primary">Next
+                                            Step</span></div>
+                                </div>
+                            </div>
+                    </div>
+                    </form>
+
+                    <div class="tab-pane fade" id="salonUpdationForm" role="tabpanel">
+                        <div class="row">
+                            <form action="/imgUpload/business-salon" method="post" enctype="multipart/form-data"
+                                id="uploadImgeditsalon">
+                                <div class="card-body">
+                                    <div class="d-flex align-items-start align-items-sm-center gap-4">
+                                        <img src="{{{asset}}}/assets/src/business.jpg" alt="user-avatar"
+                                            class="d-block rounded" height="100" width="100" id="uploadedAvatar" />
+                                        <div class="button-wrapper">
+                                            <label for="upload" class="btn btn-primary me-2 mb-4" tabindex="0">
+                                                <span class="d-none d-sm-block">Upload new photo</span>
+                                                <i class="bx bx-upload d-block d-sm-none"></i>
+                                                <input type="file" id="upload" name="file" class="account-file-input"
+                                                    hidden accept="image/png, image/jpeg" />
+                                            </label>
+
+                                            <p class="text-muted mb-0">Allowed JPG, GIF or PNG. Max size of 800K</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                            <div class="col-xl">
+                                <div class="card mb-4">
+                                    <div class="card-header d-flex justify-content-between align-items-center">
+                                        <h5 class="mb-0">Basic Details</h5>
+                                        <small class="text-muted float-end">Buisness details</small>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="mb-3">
+                                            <label class="form-label"
+                                                for="edit-salon-buisness-type"><sup>*</sup>Business Type</label>
+                                            <div class="input-group input-group-merge">
+                                                <span class="input-group-text"><i class="bx bx-shape-circle"></i></span>
+                                                <select id="edit-salon-buisness-type" name="businessType"
+                                                    class="select2 form-select">
+                                                    <option value="">Select</option>
+                                                    {{#each basicData.businessType}}
+                                                    <option value="{{{id}}}">{{{name}}}</option>
+                                                    {{/each}}
+                                                </select>
+                                            </div>
+                                            <span id="edit-salon-buisness-type-error" class="text-danger d-none">this
+                                                field is
+                                                required</span>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label"
+                                                for="edit-salon-buisness-name"><sup>*</sup>Buisness
+                                                Name</label>
+                                            <div class="input-group input-group-merge">
+                                                <span id="edit-salon-buisness-name2" class="input-group-text"><i
+                                                        class="bx bx-user"></i></span>
+                                                <input type="text" class="form-control" id="edit-salon-buisness-name"
+                                                    placeholder="John Doe" aria-label="John Doe" name="fullName"
+                                                    aria-describedby="edit-salon-buisness-name2"
+                                                    value="{{{editData.businessData.businessName}}}" />
+                                            </div>
+                                            <span id="edit-salon-buisness-name-error" class="text-danger d-none">this
+                                                field is
+                                                required</span>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label"
+                                                for="edit-salon-buisness-email"><sup>*</sup>Email</label>
+                                            <div class="input-group input-group-merge">
+                                                <span class="input-group-text"><i class="bx bx-envelope"></i></span>
+                                                <input type="text" id="edit-salon-buisness-email" class="form-control"
+                                                    placeholder="john.doe" aria-label="john.doe"
+                                                    aria-describedby="edit-salon-buisness-email2" name="email"
+                                                    value="{{{editData.businessData.businessEmail}}}"
+                                                    autocomplete="new-email" />
+                                                <span id="edit-salon-buisness-email2"
+                                                    class="input-group-text">@example.com</span>
+                                            </div>
+                                            <span id="edit-salon-buisness-email-error" class="text-danger d-none">this
+                                                field is
+                                                required</span>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label" for="edit-salon-buisness-phone"><sup>*</sup>Phone
+                                                No</label>
+                                            <div class="input-group input-group-merge">
+                                                <span id="edit-salon-buisness-phone2" class="input-group-text"><i
+                                                        class="bx bx-phone"></i></span>
+                                                <input type="text" id="edit-salon-buisness-phone" name="contactNumber"
+                                                    oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');"
+                                                    class="form-control phone-mask" placeholder="658 799 8941"
+                                                    value="{{{editData.businessData.businessContactNumber}}}"
+                                                    aria-label="658 799 8941"
+                                                    aria-describedby="edit-salon-buisness-phone2" />
+                                            </div>
+                                            <span id="edit-salon-buisness-phone-error" class="text-danger d-none">this
+                                                field is
+                                                required</span>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label" for="edit-salon-buisness-a-phone">Alternate
+                                                Phone No</label>
+                                            <div class="input-group input-group-merge">
+                                                <span id="edit-salon-buisness-phone2" class="input-group-text"><i
+                                                        class="bx bx-phone"></i></span>
+                                                <input type="text" id="edit-salon-buisness-a-phone"
+                                                    oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');"
+                                                    name="alternateNumber" class="form-control phone-mask"
+                                                    placeholder="658 799 8941" aria-label="658 799 8941"
+                                                    aria-describedby="edit-salon-buisness-phone2"
+                                                    value="{{{editData.businessData.businessAlternateNumber}}}" />
+                                            </div>
+                                            <span id="edit-salon-buisness-a-phone-error" class="text-danger d-none">this
+                                                field is
+                                                required</span>
+                                        </div>
+                                        <div class="mb-3 d-flex">
+                                            <label for="defaultCheck3" class="form-label">Active
+                                                Buisness</label>
+                                            <div class="input-group input-group-merge mt-2">
+                                                <div class="form-check form-switch mb-2">
+                                                    <input class="form-check-input" type="checkbox" value="1"
+                                                        name="isEnabled" id="edit-salon-buisness-isEnabled" {{#if
+                                                        editData.businessData.businessIsEnabled}}checked {{/if}} />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex">
+                                            <label for="defaultCheck3" class="form-label">Verified
+                                                Buisness</label>
+                                            <div class="input-group input-group-merge mt-2">
+                                                <div class="form-check form-switch mb-2">
+                                                    <input class="form-check-input" type="checkbox" value="1" {{#if
+                                                        editData.businessData.businessVerifyStatus}}checked {{/if}}
+                                                        name="isVerifed" id="edit-salon-buisness-isisVerifed" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl">
+                                <div class="card mb-4">
+                                    <div class="card-header d-flex justify-content-between align-items-center">
+                                        <h5 class="mb-0">Address Details</h5>
+                                        <small class="text-muted float-end">Buisness Address details</small>
+                                    </div>
+                                    <div class="card-body">
+
+                                        <div class="mb-3">
+                                            <label class="form-label"
+                                                for="edit-salon-buisness-address"><sup>*</sup>Address</label>
+                                            <div class="input-group input-group-merge">
+                                                <span id="edit-salon-buisness-address2" class="input-group-text"><i
+                                                        class="bx bx-home"></i></span>
+                                                <textarea id="edit-salon-buisness-address" class="form-control" rows="4"
+                                                    placeholder="304B, Manious Street" aria-label="304B, Manious Street"
+                                                    name="address"
+                                                    aria-describedby="edit-salon-buisness-address2">{{{editData.businessData.addressfield1}}}</textarea>
+                                            </div>
+                                            <span id="edit-salon-buisness-address-error" class="text-danger d-none">this
+                                                field is
+                                                required</span>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label"
+                                                for="edit-salon-buisness-city"><sup>*</sup>City</label>
+                                            <div class="input-group input-group-merge">
+                                                <span id="edit-salon-buisness-city2" class="input-group-text"><i
+                                                        class="bx bx-buildings"></i></span>
+                                                <input type="text" class="form-control" id="edit-salon-buisness-city"
+                                                    placeholder="Madrid" aria-label="Madrid" name="city"
+                                                    aria-describedby="edit-salon-buisness-city2"
+                                                    value="{{{editData.businessData.addressfield2}}}" />
+                                            </div>
+                                            <span id="edit-salon-buisness-city-error" class="text-danger d-none">this
+                                                field is
+                                                required</span>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label"
+                                                for="edit-salon-buisness-state"><sup>*</sup>State</label>
+                                            <div class="input-group input-group-merge">
+                                                <span id="edit-salon-buisness-state2" class="input-group-text"><i
+                                                        class="bx bx-stats"></i></span>
+                                                <input type="text" id="edit-salon-buisness-state" name="state"
+                                                    class="form-control" placeholder="Barcelona" aria-label="Barcelona"
+                                                    aria-describedby="edit-salon-buisness-state2"
+                                                    value="{{{editData.businessData.addressfield3}}}" />
+                                            </div>
+                                            <span id="edit-salon-buisness-state-error" class="text-danger d-none">this
+                                                field is
+                                                required</span>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label" for="edit-salon-buisness-zipCode"><sup>*</sup>Zip
+                                                Code</label>
+                                            <div class="input-group input-group-merge">
+                                                <span class="input-group-text"><i class="bx bx-directions"></i></span>
+                                                <input type="text" id="edit-salon-buisness-zipCode" name="zipCode"
+                                                    oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');"
+                                                    class="form-control" placeholder="214562" aria-label="214562"
+                                                    aria-describedby="edit-salon-buisness-zipCode2"
+                                                    value="{{{editData.businessData.addressfield4}}}" />
+                                            </div>
+                                            <span id="edit-salon-buisness-zipCode-error" class="text-danger d-none">this
+                                                field is
+                                                required</span>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label"
+                                                for="edit-salon-buisness-country"><sup>*</sup>Country</label>
+                                            <div class="input-group input-group-merge">
+                                                <span class="input-group-text"><i class="bx bx-shape-circle"></i></span>
+                                                <select id="edit-salon-buisness-country" name="country"
+                                                    class="select2 form-select">
+                                                    <option value="">Select</option>
+                                                    {{#each basicData.countries}}
+                                                    <option value="{{{id}}}">{{{name}}}</option>
+                                                    {{/each}}
+                                                </select>
+                                            </div>
+                                            <span id="edit-salon-buisness-country-error" class="text-danger d-none">this
+                                                field is
+                                                required</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xl">
+                                    <div class="card mb-4">
+                                        <div class="card-header d-flex justify-content-between align-items-center">
+                                            <h5 class="mb-0">Opening day</h5>
+                                            <small class="text-muted float-end">Fill details of Salon Working day
+                                                details</small>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="mb-3 row">
+                                                <label for="salon-edit-mon-check"
+                                                    class="col-md-2 col-form-label">Working Hour <div
+                                                        class="form-check form-switch">
+                                                    </div></label>
+                                                <div class="col-md-5">
+                                                    <input class="form-control" type="time" value="12:30:00"
+                                                        id="salon-edit-working-opening" />
+                                                    <span id="salon-edit-working-opening-error"
+                                                        class="text-danger d-none">this field is
+                                                        required</span>
+                                                </div>
+                                                <div class="col-md-5">
+                                                    <input class="form-control" type="time" value="17:30:00"
+                                                        id="salon-edit-working-closing" />
+                                                    <span id="salon-edit-working-closing-error"
+                                                        class="text-danger d-none">this field is
+                                                        required</span>
+                                                </div>
+                                            </div>
+                                            <div class="mb-3 row">
+                                                <label for="salon-edit-mon-check" class="col-md-2 col-form-label">Monday
+                                                </label>
+                                                <div class="col-md-4">
+                                                    <div class="form-check form-switch">
+                                                        <input class="form-check-input weekCheck" type="checkbox"
+                                                            value="1" name="monCheck" id="monCheck" data-week="0"
+                                                            checked />
+                                                    </div>
+                                                </div>
+                                                <label for="salon-edit-tue-check"
+                                                    class="col-md-2 col-form-label">Tuesday </label>
+                                                <div class="col-md-4">
+                                                    <div class="form-check form-switch">
+
+                                                        <input class="form-check-input weekCheck" type="checkbox"
+                                                            value="1" name="tueCheck" id="tueCheck" data-week="1"
+                                                            checked />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="mb-3 row">
+                                                <label for="salon-edit-wed-check"
+                                                    class="col-md-2 col-form-label">Wednesday </label>
+                                                <div class="col-md-4">
+                                                    <div class="form-check form-switch">
+
+                                                        <input class="form-check-input weekCheck" type="checkbox"
+                                                            value="1" name="wedCheck" id="wedCheck" data-week="2"
+                                                            checked />
+                                                    </div>
+                                                </div>
+                                                <label for="salon-edit-thus-check"
+                                                    class="col-md-2 col-form-label">Thursday </label>
+                                                <div class="col-md-4">
+                                                    <div class="form-check form-switch">
+
+                                                        <input class="form-check-input weekCheck" type="checkbox"
+                                                            value="1" name="thusCheck" id="thusCheck" data-week="3"
+                                                            checked />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="mb-3 row">
+                                                <label for="salon-edit-fri-check" class="col-md-2 col-form-label">Friday
+                                                </label>
+                                                <div class="col-md-4">
+                                                    <div class="form-check form-switch">
+
+                                                        <input class="form-check-input weekCheck" type="checkbox"
+                                                            value="1" name="friCheck" id="friCheck" data-week="4"
+                                                            checked />
+                                                    </div>
+                                                </div>
+                                                <label for="salon-edit-sat-check"
+                                                    class="col-md-2 col-form-label">Saturday </label>
+                                                <div class="col-md-4">
+                                                    <div class="form-check form-switch">
+
+                                                        <input class="form-check-input weekCheck" type="checkbox"
+                                                            value="1" name="satCheck" id="satCheck" data-week="5" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="mb-3 row">
+                                                <label for="salon-edit-sun-check" class="col-md-2 col-form-label">Sunday
+                                                </label>
+                                                <div class="col-md-4">
+                                                    <div class="form-check form-switch">
+
+                                                        <input class="form-check-input weekCheck" type="checkbox"
+                                                            value="1" name="sunCheck" id="sunCheck" data-week="6" />
+                                                    </div>
+                                                </div>
+                                                <span id="edit-salon-buisness-weekCheck-error"
+                                                    class="text-danger d-none">this field is
+                                                    required</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xl">
+                                    <div class="card mb-4">
+                                        <div class="card-header d-flex justify-content-between align-items-center">
+                                            <h5 class="mb-0">Advance Selection</h5>
+                                            <small class="text-muted float-end">Please Select Advance Fields for your
+                                                Business</small>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="mb-3 row">
+                                                <label for="edit-salon-buisness-hair-type"
+                                                    class="col-md-2 col-form-label"><sup>*</sup>Select hair-Type</label>
+                                                <div class="col-md-4">
+                                                    <select multiple class="form-select"
+                                                        id="edit-salon-buisness-hair-type"
+                                                        aria-label="Multiple select example">
+                                                        <option>select</option>
+                                                        {{#each basicData.hairType}}
+                                                        <option value="{{{id}}}">{{{name}}}</option>
+                                                        {{/each}}
+                                                    </select>
+                                                    <span id="edit-salon-buisness-hair-type-error"
+                                                        class="text-danger d-none">this field is
+                                                        required</span>
+                                                </div>
+                                                <label for="edit-salon-buisness-service"
+                                                    class="col-md-2 col-form-label"><sup>*</sup>Select Service</label>
+                                                <div class="col-md-4">
+                                                    <select multiple class="form-select"
+                                                        id="edit-salon-buisness-service"
+                                                        aria-label="Multiple select example">
+                                                        <option>Select</option>
+                                                        {{#each basicData.service}}
+                                                        <option value="{{{id}}}">{{{name}}}</option>
+                                                        {{/each}}
+                                                    </select>
+                                                    <span id="edit-salon-buisness-service-error"
+                                                        class="text-danger d-none">this field is
+                                                        required</span>
+                                                </div>
+                                            </div>
+                                            <div class="mb-3 row">
+                                                <label for="edit-salon-buisness-latitute"
+                                                    class="col-md-2 col-form-label"><sup>*</sup>Latitute</label>
+                                                <div class="col-md-4">
+                                                    <input class="form-control" id="edit-salon-buisness-latitute"
+                                                        oninput="this.value = this.value.replace(/[^0-9.-]/g, '').replace(/(\..*)\./g, '$1');"
+                                                        value="{{{editData.businessData.latitude}}}" />
+                                                    <span id="edit-salon-buisness-latitute-error"
+                                                        class="text-danger d-none">this field is
+                                                        required</span>
+                                                </div>
+                                                <label for="edit-salon-buisness-longitute"
+                                                    class="col-md-2 col-form-label"><sup>*</sup>Longitute</label>
+                                                <div class="col-md-4">
+                                                    <input class="form-control" id="edit-salon-buisness-longitute"
+                                                        oninput="this.value = this.value.replace(/[^0-9.-]/g, '').replace(/(\..*)\./g, '$1');"
+                                                        value="{{{editData.businessData.longitude}}}" />
+                                                    <span id="edit-salon-buisness-longitute-error"
+                                                        class="text-danger d-none">this field is
+                                                        required</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xl">
+                                    <div class="card mb-4">
+                                        <div class="card-header d-flex justify-content-between align-items-center">
+                                            <h5 class="mb-0">Service Selection</h5>
+                                            <small class="text-muted float-end"><span
+                                                    class="btn btn-success float-right" id="addSerivce"
+                                                    data-index="1">Add+</span></small>
+                                        </div>
+                                        <div class="card-body">
+                                            <div id="businessService">
+                                                {{#each editData.businessService}}
+                                                <div id="service-{{{id}}}">
+                                                    <div class="mb-3 row">
+                                                        <label for="create-salon-buisness-service-name-{{{id}}}"
+                                                            class="col-md-2 col-form-label"><sup>*</sup>Name</label>
+                                                        <div class="col-md-4">
+                                                            <input class="form-control servicesName"
+                                                                name="serviceName[]"
+                                                                id="create-salon-buisness-service-name-{{{id}}}"
+                                                                data-index="{{{id}}}" value="{{{name}}}"/>
+                                                            <span id="create-salon-buisness-service-name-{{{id}}}-error"
+                                                                class="text-danger d-none">this field is
+                                                                required</span>
+                                                        </div>
+                                                        <label for="create-salon-buisness-service-price-{{{id}}}"
+                                                            class="col-md-2 col-form-label"><sup>*</sup>Price</label>
+                                                        <div class="col-md-4">
+                                                            <input class="form-control servicePrice" type="number"
+                                                                min="0" name="servicePrice[]"
+                                                                id="create-salon-buisness-service-price-{{{id}}}"
+                                                                data-index="{{{id}}}" value="{{{price}}}"/>
+                                                            <span
+                                                                id="create-salon-buisness-service-price-{{{id}}}-error"
+                                                                class="text-danger d-none">this field is
+                                                                required</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="mb-3 row">
+                                                        <label for="create-salon-buisness-service-time-{{{id}}}"
+                                                            class="col-md-2 col-form-label"><sup>*</sup>Time</label>
+                                                        <div class="col-md-4">
+                                                            <input class="form-control serviceTime" type="time"
+                                                                value="00:00" name="serviceTime[]"
+                                                                id="create-salon-buisness-service-time-{{{id}}}"
+                                                                data-index="{{{id}}}" value="{{{time}}}"/>
+                                                            <span id="create-salon-buisness-service-time-{{{id}}}-error"
+                                                                class="text-danger d-none">this field is
+                                                                required</span>
+                                                        </div>
+                                                        <label for="create-salon-buisness-service-desc-{{{id}}}"
+                                                            class="col-md-2 col-form-label"><sup>*</sup>Description</label>
+                                                        <div class="col-md-4">
+                                                            <input class="form-control serviceDescription"
+                                                                name="serviceDescription[]"
+                                                                id="create-salon-buisness-service-desc-{{{id}}}"
+                                                                data-index="{{{id}}}" value="{{{description1}}}"/>
+                                                            <span id="create-salon-buisness-service-desc-{{{id}}}-error"
+                                                                class="text-danger d-none">this field is
+                                                                required</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="mb-3 row">
+                                                        <label for="create-salon-buisness-service-desc2-{{{id}}}"
+                                                            class="col-md-2 col-form-label">Description-2</label>
+                                                        <div class="col-md-4">
+                                                            <input class="form-control serviceLongDescription"
+                                                                name="serviceLongDescription[]"
+                                                                id="create-salon-buisness-service-desc2-{{{id}}}"
+                                                                data-index="{{{id}}}" value="{{{description2}}}"/>
+                                                        </div>
+                                                        <div class="col-md-4"></div>
+                                                        <div class="col-md-2 float-right">
+                                                            <span class="btn btn-danger removeSerivce"
+                                                                onclick="$('#service-{{{id}}}').remove()">Remove</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                {{/each}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-2"> <span onclick="previous();" class="btn btn-secondary float-left">
+                                        &#x2190; Previous
+                                        Step</span> </div>
+                                <div class="col-9"></div>
+                                <div class="col-1"><span class="btn btn-primary float-right"
+                                        onclick="submitEditSalon();">Submit</span></div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="tab-pane fade" id="BarberCreationForm" role="tabpanel">
+                    <p>
+                        Oat cake chupa chups dragée donut toffee. Sweet cotton candy jelly beans macaroon gummies
+                        cupcake gummi bears cake chocolate.
+                    </p>
+                    <p class="mb-0">
+                        Cake chocolate bar cotton candy apple pie tootsie roll ice cream apple pie brownie cake.
+                        Sweet
+                        roll icing sesame snaps caramels danish toffee. Brownie biscuit dessert dessert. Pudding
+                        jelly
+                        jelly-o tart brownie jelly.
+                    </p>
+                    <div class="col-3"> <span onclick="previous();" class="btn btn-primary">Previous
+                            Step</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<script src="{{{asset}}}/assets/js/script/salon/EditValidate.js"></script>
