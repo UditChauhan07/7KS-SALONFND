@@ -11,12 +11,12 @@ node {
      sh 'echo "TEST PASSED"'
           }  
      }
-     stage('Push Image'){
-     docker.withRegistry('https://registry.hub.docker.com','dockerhub'){            
-     app.push("${env.BUILD_NUMBER}")            
-     app.push("Salon")   
-          }
-     }
+     // stage('Push Image'){
+     // docker.withRegistry('https://registry.hub.docker.com','dockerhub'){            
+     // app.push("${env.BUILD_NUMBER}")            
+     // app.push("Salon")   
+     //      }
+     // }
      checkout scm
 
     docker.withRegistry('https://registry.hub.docker.com','dockerhub'){
