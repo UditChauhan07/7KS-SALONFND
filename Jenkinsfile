@@ -4,26 +4,26 @@ node {
      checkout scm  
      }
      stage('Build docker Image'){
-     app = docker.build("uditchauhan07/nt-2")
+     app = docker.build("uditchauhan07/salonfnd")
      }
      stage('Test Image'){
      app.inside {
      sh 'echo "TEST PASSED"'
           }  
      }
-     // stage('Push Image'){
-     // docker.withRegistry('https://registry.hub.docker.com','dockerhub'){            
-     // app.push("${env.BUILD_NUMBER}")            
-     // app.push("Salon")   
-     //      }
-     // }
-     checkout scm
+     stage('Push Image'){
+     docker.withRegistry('https://registry.hub.docker.com','dockerhub'){            
+     app.push("${env.BUILD_NUMBER}")            
+     app.push("Salon")   
+          }
+     }
+    //  checkout scm
 
-    docker.withRegistry('https://registry.hub.docker.com','dockerhub'){
+    // docker.withRegistry('https://registry.hub.docker.com','dockerhub'){
 
-        def customImage = docker.build("my-image:${env.BUILD_NUMBER}")
+    //     def customImage = docker.build("my-image:${env.BUILD_NUMBER}")
 
-        /* Push the container to the custom Registry */
-        customImage.push()
-    }
+    //     /* Push the container to the custom Registry */
+    //     customImage.push()
+    // }
 }
