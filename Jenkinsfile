@@ -8,7 +8,7 @@ node {
      }
      stage('Test Image'){
      app.inside {
-     sh 'echo "TEST PASSED"'
+     sh 'echo "Test Image Passed"'
           }  
      }
      stage('Push Image'){
@@ -17,7 +17,8 @@ node {
      app.push("Salon")   
           }
      }
-    //  checkout scm
+}
+//  checkout scm
 
     // docker.withRegistry('https://registry.hub.docker.com','dockerhub'){
 
@@ -26,4 +27,3 @@ node {
     //     /* Push the container to the custom Registry */
     //     customImage.push()
     // }
-}
