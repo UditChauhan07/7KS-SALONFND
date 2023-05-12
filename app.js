@@ -26,7 +26,7 @@ let test = require('./routes/fileUpload/test');
 let api = require('./routes/Api/index');
 let onBoarding = require('./routes/Api/onboarding');
 
-require('dotenv').config();
+require('dotenv').config(); 
 
 var app = express();
 
